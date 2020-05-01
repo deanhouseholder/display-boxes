@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source display-boxes.sh
+source ../display-boxes.sh
 
 headers='Git Alias	Runs	Description'
 
