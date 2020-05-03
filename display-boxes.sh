@@ -2,30 +2,31 @@
 
 display-box() {
   # Catch missing inputs
+  local error=0
   if [[ -z "$1" ]]; then
     echo "Missing required \$headers argument"
-    die=1
+    error=1
   fi
   if [[ -z "$2" ]]; then
     echo "Missing required \$body argument"
-    die=1
+    error=1
   fi
-  if [[ ! "$3" =~ ^[1-6]$ ]]; then # Make sure it's a positive integer with a valid style number
+  if [[ ! -z "$3" ]] && [[ ! "$3" =~ ^[1-6]$ ]]; then # Make sure it's a positive integer with a valid style number
     echo "Invalid style number. Valid options: 1-6"
-    die=1
+    error=1
   fi
-  if [[ "$die" -eq 1 ]]; then
-    exit 1
+  if [[ "$error" -eq 1 ]]; then
+    return
   fi
 
   # Set the amount of padding between column bars and data
   if [[ -z "$4" ]]; then
-    padding=1
+    local padding=1
   else
     if [[ "$4" =~ ^[0-9]+$ ]]; then # Make sure it's a positive integer
-      padding=$4
+      local padding=$4
     else
-      padding=1
+      local padding=1
     fi
   fi
 
