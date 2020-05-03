@@ -40,7 +40,7 @@ display-box() {
 
   clean_string() {
     local r=$(($required_spaces - 1))
-    test $r < 1 && r=1
+    test "$r" -lt 1 && r=1
     echo "$1" | sed -E \
       -e '/^\s*$/d'               `# Delete blank lines` \
       -e 's/([ ]{'$r'}[ ]+)/\t/g' `# Detect n spaces and replace with tab` \
