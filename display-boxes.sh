@@ -38,8 +38,21 @@ display-box() {
     printf "%0.s$1" $(seq $2)
   }
 
+  clean_string() {
+    local r=$(($required_spaces - 1))
+    test $r < 1 && r=1
+    echo "$1" | sed -E \
+      -e '/^\s*$/d'               `# Delete blank lines` \
+      -e 's/([ ]{'$r'}[ ]+)/\t/g' `# Detect n spaces and replace with tab` \
+      -e 's/^\s*//g'              `# Trim leading spaces` \
+      -e 's/\s*$//g'              `# Trim trailing spaces`
+  }
+
   # Set some default vars
   declare -a local column_length
+  local required_spaces=2 # Spaces required as column separator
+  local headers="$(clean_string "$1")"
+  local body="$(clean_string "$2")"
   local output=''
   local show_top=1
   local show_middle=1
@@ -235,19 +248,19 @@ display-box() {
   }
 
   # Define max depths for each column by processing input
-  get_max_depth "$1"
-  get_max_depth "$2"
+  get_max_depth "$headers"
+  get_max_depth "$body"
 
   # Add padding to the max depths
   pad_each_column
 
   # Generate the Header
   [[ "$show_top" -eq 1 ]] && header_top_line
-  process_data "$1"
+  process_data "$headers"
   [[ "$show_middle" -eq 1 ]] && header_bottom_line
 
   # Generate the Body
-  process_data "$2"
+  process_data "$body"
   [[ "$show_bottom" -eq 1 ]] && footer
 
   # Display the final output
