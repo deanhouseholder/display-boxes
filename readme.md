@@ -146,4 +146,4 @@ There are two example scripts included in the `examples` directory. The `example
 | Version Number | Date Released | Description of changes |
 | -------------- | ------------- | ---------------------- |
 | v1.0           | 30 Apr 2020   | Initial version        |
-
+| v1.0.1         | 22 Mar 2022   | Minor bug fix          |

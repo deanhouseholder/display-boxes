@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ../display-boxes.sh
+script_path="$(cd "${0%/*}" && pwd)"
+. "$script_path/../display-boxes.sh"
 
 headers='Git Alias	Runs	Description'
 

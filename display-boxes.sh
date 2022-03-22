@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Check if directly executed
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  printf "This script is intended to be sourced, (typically by another script), not executed by itself.\n\n"
+  script_path="$(cd "${0%/*}" && pwd)"
+  printf "To source it from its current path, run:\n. $script_path/display-boxes.sh\n\n"
+fi
+
+# Main function to display box
 display-box() {
   # Catch missing inputs
   local error=0

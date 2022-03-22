@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ../display-boxes.sh
+script_path="$(cd "${0%/*}" && pwd)"
+. "$script_path/../display-boxes.sh"
 
 headers='Git Alias	Runs	Description'
 
@@ -27,4 +28,5 @@ for i in $(seq 6); do
   printf "\n=== Style $i ===\n\n"
   display-box "$headers" "$body" $i
 done
+
 echo
