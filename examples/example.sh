@@ -24,7 +24,4 @@ stash	git stash	Stash current changes
 restore	git stash pop	Restore latest stashed changes
 wip	git commit -am "WIP"	Make a "Work in Progress" commit'
 
-style=1
-padding=1
-
-display-box "$headers" "$body" $style $padding
+display-box "$headers" "$body" -s 1 -p 1
