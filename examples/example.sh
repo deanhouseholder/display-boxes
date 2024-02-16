@@ -1,7 +1,7 @@
 #!/bin/bash
 
 script_path="$(cd "${0%/*}" && pwd)"
-. "$script_path/../display-boxes.sh"
+. "$script_path/../display-box.sh"
 
 headers='Git Alias	Runs	Description'
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 script_path="$(cd "${0%/*}" && pwd)"
-. "$script_path/../display-boxes.sh"
+. "$script_path/../display-box.sh"
 
 headers='Git Alias	Runs	Description'
 
@@ -26,7 +26,7 @@ wip	git commit -am "WIP"	Make a "Work in Progress" commit'
 
 for i in $(seq 6); do
   printf "\n=== Style $i ===\n\n"
-  display-box "$headers" "$body" $i
+  display-box "$headers" "$body" -s $i
 done
 
 echo
